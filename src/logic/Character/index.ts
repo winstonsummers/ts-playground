@@ -33,7 +33,6 @@ export default class Character implements ICharacter {
   }
 
   public attachMetaData(charMeta: ICharMeta): Character {
-    if (!this[charMeta.dataType]) { throw new Error('bad metadata passed to Character') }
     this[charMeta.dataType] = charMeta;
     return this;
   }
