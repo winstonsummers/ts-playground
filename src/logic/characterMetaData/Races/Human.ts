@@ -1,8 +1,9 @@
 import ICharMeta, { metaDataType } from  '../ICharMeta';
+import { races } from '../index'
 
 export default class Human implements ICharMeta {
   dataType: metaDataType = metaDataType.Race;
-  dataName: string = 'Human';
+  dataName: string = races.Human;
   hasMagic: boolean = false;
   modifiers: { [key: string]: number; } = {
 
@@ -10,5 +11,4 @@ export default class Human implements ICharMeta {
   abilities: any[] = [
 
   ];
-  
 }

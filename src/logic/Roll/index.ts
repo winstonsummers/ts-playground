@@ -126,7 +126,3 @@ export default RollBuilder;
 export type {
   die as Die,
 }
-export {
-  Roll,
-  RollBuilder,
-}

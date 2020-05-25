@@ -1,2 +1,7 @@
-// how do i want to handle metaData.... mixins? i don't know... arguably i could add them as a list of all the metadata but then i would have to sort throught that list whenever i wanted to interact with any of that.......
+export enum archetypes {
+  Fighter = 'fighter',
+}
 
+export enum races {
+  Human = 'human',
+}
