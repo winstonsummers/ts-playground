@@ -72,9 +72,7 @@ class Roll implements IRoll {
   }
 
   private static stat = (): number => {
-    const { rollDice, addUp } = Roll
-    const statArr = rollDice({sides: 6, quantity: 3})
-    return statArr.reduce(addUp)
+    return new RollBuilder(3).d(6).total
   }
 
   private static NUMBER_OF_STATS = 6;
