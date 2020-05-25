@@ -41,7 +41,4 @@ export default class StatBlock implements IStatBlock {
   get charisma(): Stat {
     return this._stats._cha;
   }
-
-  
-
 }
