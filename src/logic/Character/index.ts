@@ -1,11 +1,12 @@
 import ICharacter from './ICharacter';
 import StatBlock from '../StatBlock';
 import Roll from '../Roll';
+import ICharMeta, { metaDataType } from '../characterMetaData/ICharMeta';
 
 export default class Character implements ICharacter {
   private _name: string;
-  private _race: string;
-  private _archetype: string;
+  private _race: string | ICharMeta;
+  private _archetype: string | ICharMeta;
   private _stats: StatBlock;
 
   constructor({name, race, archetype}: {name: string, race: string, archetype: string}) {
@@ -29,6 +30,12 @@ export default class Character implements ICharacter {
     } = this;
 
     return `Hello, I'm ${name} the ${race} ${archetype}!`
+  }
+
+  public attachMetaData(charMeta: ICharMeta): Character {
+    if (!this[charMeta.dataType]) { throw new Error('bad metadata passed to Character') }
+    this[charMeta.dataType] = charMeta;
+    return this;
   }
 
   public get race() {
