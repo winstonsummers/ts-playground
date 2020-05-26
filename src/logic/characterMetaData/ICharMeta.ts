@@ -9,7 +9,7 @@ export default interface ICharMeta {
   hasMagic: boolean
   modifiers: {
     // path to value: plus/minus value
-    [key: string]: number
+    [key: string]: (currValue?: any) => any
   }
   abilities: any[]
 }

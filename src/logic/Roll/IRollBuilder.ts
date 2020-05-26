@@ -1,5 +1,5 @@
 import { die } from './IRoll'
-import { Roll } from './index'
+import Roll from './Roll'
 
 export default interface IRollBuilder {
   d: (sides: die) => Roll

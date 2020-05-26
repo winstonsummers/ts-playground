@@ -1,6 +1,6 @@
 import { die } from './IRoll'
 import IRollBuilder from './IRollBuilder'
-import { Roll } from './index'
+import Roll from './Roll'
 
 export default class RollBuilder implements IRollBuilder {
   private readonly _quantity: number;
@@ -28,7 +28,7 @@ export default class RollBuilder implements IRollBuilder {
   }
 
   get quantity() {
-    return this._quantity || 1;
+    return this._quantity;
   }
 
   get sides() {
@@ -36,11 +36,11 @@ export default class RollBuilder implements IRollBuilder {
   }
 
   get isPercent() {
-    return !!this._isPercent;
+    return this._isPercent;
   }
 
   get isStats() {
-    return !!this._isStats;
+    return this._isStats;
   }
 
 }

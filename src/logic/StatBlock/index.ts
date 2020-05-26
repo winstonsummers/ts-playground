@@ -1,10 +1,13 @@
 import IStatBlock from './IStatBlock';
 import Stat from './Stat';
+import Roll from '../Roll';
+
+const quickRollStats = () => new Roll().stats().asPool;
 
 export default class StatBlock implements IStatBlock {
   private _stats!: {[key: string]: Stat}
 
-  constructor(statArr: number[]) {
+  constructor(statArr: number[] = quickRollStats()) {
     this.statValues = statArr;
   }
 

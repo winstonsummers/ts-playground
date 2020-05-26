@@ -6,7 +6,7 @@ export default interface ICharacter {
   name: string
   race: string | ICharMeta
   archetype: string | ICharMeta
-  stats: StatBlock
   getIntroduction: () => string
   attachMetaData: (charMeta: ICharMeta) => Character
+  [key: string]: any
 }

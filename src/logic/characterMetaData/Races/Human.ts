@@ -1,14 +1,27 @@
 import ICharMeta, { metaDataType } from  '../ICharMeta';
-import { races } from '../index'
+import { races, metadataCreator } from '../index'
+import Character from '../../Character';
+import Stat from '../../StatBlock/Stat';
 
-export default class Human implements ICharMeta {
-  dataType: metaDataType = metaDataType.Race;
-  dataName: string = races.Human;
-  hasMagic: boolean = false;
-  modifiers: { [key: string]: number; } = {
+const Human: ICharMeta = {
+  dataType: metaDataType.Race,
+  dataName: races.Human,
+  hasMagic: false,
+  modifiers: {
+    '_stats._con': (currentValue: Stat) => {
+      const newValue = currentValue.score + 1;
+      return new Stat(newValue);
+    },
+    '_stats._cha': (currentValue: Stat) => {
+      const newValue = currentValue.score + 1;
+      return new Stat(newValue);
+    },
+  },
+  abilities: [
 
-  };
-  abilities: any[] = [
-
-  ];
+  ],
 }
+
+const createHuman: (_this: Character) => Character = metadataCreator(Human);
+
+export default createHuman;

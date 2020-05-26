@@ -1,25 +1,36 @@
 import ICharacter from './ICharacter';
 import StatBlock from '../StatBlock';
-import Roll from '../Roll';
-import ICharMeta, { metaDataType } from '../characterMetaData/ICharMeta';
+import ICharMeta from '../characterMetaData/ICharMeta';
 
-export default class Character implements ICharacter {
+export default class Character extends StatBlock implements ICharacter {
   private _name: string;
-  private _race: string | ICharMeta;
-  private _archetype: string | ICharMeta;
-  private _stats: StatBlock;
 
-  constructor({name, race, archetype}: {name: string, race: string, archetype: string}) {
+  constructor(name: string, rollStats?: number[]) {
+    super(rollStats)
+
     this._name = name;
-    this._race = race;
-    this._archetype = archetype;
-
-    const rollStats = new Roll().stats().asPool;
-    this._stats = new StatBlock(rollStats)
   }
 
   public get name() {
     return this._name;
+  }
+
+  private applyModifiers = ({modifiers}: ICharMeta) => {
+    for(const path in modifiers) {
+      const changeCB = modifiers[path];
+      let thisDotPath = (this as ICharacter)[path]
+      thisDotPath = changeCB(thisDotPath);
+    }
+  }
+
+  private set _race(race: ICharMeta) {
+    this.applyModifiers(race);
+    this._race = race;
+  }
+
+  private set _archetype(archetype: ICharMeta) {
+    this.applyModifiers(archetype);
+    this._archetype = archetype;
   }
 
   public getIntroduction() {
@@ -43,9 +54,5 @@ export default class Character implements ICharacter {
 
   public get archetype() {
     return this._archetype;
-  }
-
-  public get stats() {
-    return this._stats;
   }
 }
